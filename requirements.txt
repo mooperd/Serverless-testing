@@ -1,2 +1,5 @@
 pandas
 requests
+s3fs
+arrow
+base64
