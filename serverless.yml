@@ -59,4 +59,4 @@ functions:
     # The `events` block defines how to trigger the handler.helloWorld code
     events:
       # Invoke Lambda function every minute
-      - schedule: rate(1 minute)
+      - schedule: rate(60 minute)
