@@ -14,7 +14,7 @@ jobs:
       with:
         args: install
     - name: serverless deploy
-      uses: mooperd/serverless-github-action@master
+      uses: mooperd/serverless-github-action@python3.8-nodejs13
       with:
         args: deploy
       env:
