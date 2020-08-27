@@ -2,17 +2,30 @@ on:
   push:
     branches:
       - master
+
 name: Deploy master branch
+
+
 jobs:
+  run-env:
+    name: Run Env
+    runs-on: ubuntu-latest
+    steps:
+    - name: Env
+      run: env
+
   deploy:
     name: deploy
     runs-on: ubuntu-latest
     steps:
+    - name: Checkout
     - uses: actions/checkout@master
+
     - name: npm install
       uses: actions/setup-node@master
       with:
         args: install
+    
     - name: serverless deploy
       uses: mooperd/serverless-github-action@master
       with:
