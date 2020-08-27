@@ -51,6 +51,7 @@ provider:
 # The `functions` block defines what code to deploy
 functions:
   helloWorld:
+    name: ${self:custom.stack_name}-hello-world
     handler: handler.run
     # The `events` block defines how to trigger the handler.helloWorld code
     events:
