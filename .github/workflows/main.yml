@@ -11,6 +11,10 @@ jobs:
     name: Run Env
     runs-on: ubuntu-latest
     steps:
+    - name: Extract branch name
+      shell: bash
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF##*/})"
+      id: extract_branch
     - name: Env
       run: env
 
@@ -29,7 +33,7 @@ jobs:
     - name: serverless deploy
       uses: mooperd/serverless-github-action@master
       with:
-        args: deploy --stage=${GITHUB_REF##*/}
+        args: deploy --stage=${{ steps.extract_branch.outputs.branch }}
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
