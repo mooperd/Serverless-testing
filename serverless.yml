@@ -7,6 +7,9 @@
 # The `service` block is the name of the service
 service: serverless
 
+plugins:
+  - serverless-python-requirements
+
 # DRY constants: define all compound/generated names in one place
 # Override args are: .. defaults:
 # --app_acroym          signed-uploader
