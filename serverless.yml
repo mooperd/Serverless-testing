@@ -22,7 +22,8 @@ plugins:
 custom:
   app_acronym: testing-wibble-meow
   default_stage: test
-  stage: ${opt:stage, self:custom.default_stage}
+
+  stage: ${opt:branch}
   stack_name: ${self:custom.app_acronym}-${self:custom.stage}
   region: ${opt:region, self:provider.region}
   deletion_policy: Delete
