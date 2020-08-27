@@ -7,7 +7,6 @@ name: Deploy master branch
 
 jobs:
   branch-names:
-    name: Get Branch Names
     - name: Inject slug/short variables
       uses: rlespinasse/github-slug-action@v2.x
 
