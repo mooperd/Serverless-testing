@@ -39,7 +39,7 @@ custom:
 # The `provider` block defines where your service will be deployed
 provider:
   name: aws
-  runtime: python3.6
+  runtime: python3.8
   region: eu-west-1
   environment:
     S3_BUCKET: ${self:custom.s3_bucket}
