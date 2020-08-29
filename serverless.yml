@@ -46,11 +46,7 @@ provider:
     S3_BUCKET: ${self:custom.s3_bucket}
     S3_KEY_BASE: ${self:custom.s3_key_base}
     URL_DEFAULT_TTL: ${self:custom.url_default_ttl}
-  iamRoleStatements:
-    - Effect: Allow
-      Action:
-        - s3:*
-      Resource: ${self:custom.s3_role_resource}
+
 
 # The `functions` block defines what code to deploy
 functions:
@@ -61,3 +57,9 @@ functions:
     events:
       # Invoke Lambda function every minute
       - schedule: cron(0 * * * ? *)
+    iamRoleStatementsName: $${self:custom.stack_name}-role-lambda
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - s3:*
+        Resource: ${self:custom.s3_role_resource}
