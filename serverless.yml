@@ -35,6 +35,8 @@ custom:
   s3_role_resource: ${self:custom.s3_bucket_arn}/${self:custom.s3_key_base}/*
   # Put this here rather than in code (presigned URL TTL)
   url_default_ttl: 60
+  deploymentBucket:
+    versioning: true
 
 
 # The `provider` block defines where your service will be deployed
@@ -47,6 +49,8 @@ provider:
     S3_BUCKET: ${self:custom.s3_bucket}
     S3_KEY_BASE: ${self:custom.s3_key_base}
     URL_DEFAULT_TTL: ${self:custom.url_default_ttl}
+  deploymentBucket:
+    name: z7of-deployment-bucket
 
 
 # The `functions` block defines what code to deploy
@@ -57,7 +61,7 @@ functions:
     # The `events` block defines how to trigger the handler.helloWorld code
     events:
       # Invoke Lambda function every minute
-      - schedule: cron(0 * * * ? *)
+      - schedule: cron(* * * * ? *)
     iamRoleStatementsName: $${self:custom.stack_name}-role-lambda
     iamRoleStatements:
       - Effect: Allow
