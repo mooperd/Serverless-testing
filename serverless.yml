@@ -20,11 +20,11 @@ plugins:
 # --deletion_policy     delete
 
 custom:
-  app_acronym: testing-wibble-meow
+  app_acronym: wibble-foo
   default_stage: test
 
   stage: ${opt:branch}
-  stack_name: ${self:custom.app_acronym}-${self:custom.stage}
+  stack_name: ${self:custom.stage}-${self:custom.app_acronym}
   region: ${opt:region, self:provider.region}
   deletion_policy: Delete
   # Default to using app_acronym as bucket name
