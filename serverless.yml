@@ -60,4 +60,4 @@ functions:
     # The `events` block defines how to trigger the handler.helloWorld code
     events:
       # Invoke Lambda function every minute
-      - schedule: cron(* * * * ? *)
+      - schedule: cron(0 * * * ? *)
