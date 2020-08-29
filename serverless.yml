@@ -20,7 +20,7 @@ plugins:
 # --deletion_policy     delete
 
 custom:
-  app_acronym: testing-wibble-meow
+  app_acronym: testing-wibble
   default_stage: test
 
   stage: ${opt:branch}
@@ -40,6 +40,7 @@ custom:
 # The `provider` block defines where your service will be deployed
 provider:
   name: aws
+  stackName: ${self:custom.app_acronym}-${self:custom.stage}
   runtime: python3.8
   region: eu-west-1
   environment:
