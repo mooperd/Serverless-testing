@@ -20,7 +20,7 @@ jobs:
     
     - name: git location file
       shell: bash
-      run: $(git rev-parse --short "$GITHUB_SHA")-${GITHUB_REF##*/} > git-location.txt
+      run: ((printf %s ${GITHUB_REF##*/});(printf %s "_");(git rev-parse --short "$GITHUB_SHA") )>git-location.txt
     
     - name: serverless deploy
       uses: mooperd/serverless-github-action@master
