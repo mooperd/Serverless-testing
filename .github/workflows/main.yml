@@ -17,11 +17,16 @@ jobs:
       shell: bash
       run: echo "##[set-output name=git-branch;]$(echo ${GITHUB_REF##*/})"
       id: extract_branch
+
+    - name: Extract git sha
+      shell: bash
+      run: echo "##[set-output name=git-sha;]$(echo ${GITHUB_SHA})"
+      id: extract_sha
   
     - name: serverless deploy
       uses: mooperd/serverless-github-action@master
       with:
-        args: deploy --git-branch=${{ steps.extract_branch.outputs.git-branch }} --git-sha=${GITHUB_SHA}
+        args: deploy --git-branch=${{ steps.extract_branch.outputs.git-branch }} --git-sha=${{ steps.extract_sha.outputs.git-sha }}
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
