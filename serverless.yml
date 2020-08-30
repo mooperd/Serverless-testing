@@ -37,6 +37,7 @@ provider:
     S3_KEY_BASE: ${self:custom.s3_key_base}
     GIT_BRANCH: ${opt:git-branch}
     GIT_SHA: ${opt:git-sha}
+    PROJECT_NAME: ${self:service}
   deploymentBucket:
     name: z7of-deployment-bucket # This is where we store our code.
   iamRoleStatements: # Permissions
