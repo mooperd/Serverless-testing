@@ -43,6 +43,11 @@ provider:
     URL_DEFAULT_TTL: ${self:custom.url_default_ttl}
   deploymentBucket:
     name: z7of-deployment-bucket
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:*
+      Resource: ${self:custom.s3_role_resource}
 
 
 # The `functions` block defines what code to deploy
@@ -54,9 +59,4 @@ functions:
     events:
       # Invoke Lambda function every minute
       - schedule: cron(0 * * * ? *)
-    iamRoleStatementsName: ${self:custom.stack_name}-role-lambda
-    iamRoleStatements:
-      - Effect: Allow
-        Action:
-          - s3:*
-        Resource: ${self:custom.s3_role_resource}
+
