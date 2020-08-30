@@ -12,20 +12,18 @@ jobs:
 
     - name: Extract branch name
       shell: bash
-      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF##*/})"
+      run: echo "##[set-output name=git-branch;]$(echo ${GITHUB_REF##*/})"
+      run: echo "##[set-output name=git-sha;]$(git rev-parse --short $GITHUB_SHA)"
       id: extract_branch
 
     - name: Checkout
       uses: actions/checkout@master
-    
-    - name: git location file
-      shell: bash
-      run: printf "%s_%s" "${GITHUB_REF##*/}" "$(git rev-parse --short $GITHUB_SHA)" > git-location.txt
+  
     
     - name: serverless deploy
       uses: mooperd/serverless-github-action@master
       with:
-        args: deploy --branch=${{ steps.extract_branch.outputs.branch }}
+        args: deploy --git-branch=${{ steps.extract_branch.outputs.git-branch }} --git-sha=${{ steps.extract_branch.outputs.git-sha }}
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
