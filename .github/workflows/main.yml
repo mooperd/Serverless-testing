@@ -17,11 +17,10 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@master
-
-    - name: npm install
-      uses: actions/setup-node@master
-      with:
-        args: install
+    
+    - name: git location file
+      shell: bash
+      run: $(git rev-parse --short "$GITHUB_SHA")-${GITHUB_REF##*/} > git-location.txt
     
     - name: serverless deploy
       uses: mooperd/serverless-github-action@master
