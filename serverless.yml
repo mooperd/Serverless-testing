@@ -5,7 +5,7 @@
 # uses to deploy your code to your provider of choice
 
 # The `service` block is the name of the service
-service: qorxu-testing-app # ${self:service}
+service: meowtron-testing # ${self:service}
 
 plugins:
   - serverless-python-requirements
@@ -39,7 +39,7 @@ provider:
     GIT_SHA: ${opt:git-sha}
     PROJECT_NAME: ${self:service}
   deploymentBucket:
-    name: z7of-deployment-bucket # This is where we store our code.
+    name: meowtron-deployment-bucket # This is where we store our code.
   iamRoleStatements: # Permissions
     - Effect: Allow
       Action:
