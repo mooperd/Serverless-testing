@@ -39,7 +39,7 @@ provider:
     GIT_SHA: ${opt:git-sha}
     PROJECT_NAME: ${self:service}
   deploymentBucket:
-    name: meowtron-deployment-bucket # This is where we store our code.
+    name: meowtron-deployment # This is where we store our code.
   iamRoleStatements: # Permissions
     - Effect: Allow
       Action:
